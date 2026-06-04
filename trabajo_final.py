@@ -48,10 +48,8 @@ if acceso:
         print("--------------------------------------")
  
         opcion = input("Elegí una opción (1-5): ").strip()
- 
-        match opcion:
- 
-            case "1":
+
+        def agregar_producto():
                 print("----- AGREGAR PRODUCTO -----")
  
                 nombre = ""
@@ -82,31 +80,31 @@ if acceso:
                 producto = [nombre, categoria, precio]
                 productos.append(producto)
                 print(f"Producto '{nombre}' agregado correctamente.")
-            # Mostrar Producto
-            case "2":
-                print("----- PRODUCTOS REGISTRADOS -----")
+
+        def mostrar_producto():
+            print("----- PRODUCTOS REGISTRADOS -----")
  
-                if len(productos) == 0:
-                    print("No hay productos registrados.")
-                else:
-                    for i in range(len(productos)):
-                        print(f"\n  N° {i + 1}")
-                        print(f"  Nombre    : {productos[i][0]}")
-                        print(f"  Categoría : {productos[i][1]}")
-                        print(f"  Precio    : ${productos[i][2]}")
-                    print(f"\nTotal de productos: {len(productos)}")
-            # Buscar Producto
-            case "3":
-                print("---- BUSCAR PRODUCTO ----")
+            if len(productos) == 0:
+                print("No hay productos registrados.")
+            else:
+                for i in range(len(productos)):
+                    print(f"\n  N° {i + 1}")
+                    print(f"  Nombre    : {productos[i][0]}")
+                    print(f"  Categoría : {productos[i][1]}")
+                    print(f"  Precio    : ${productos[i][2]}")
+                print(f"\nTotal de productos: {len(productos)}")
+
+        def buscar_producto():
+            print("---- BUSCAR PRODUCTO ----")
  
-                if len(productos) == 0:
-                    print("No hay productos registrados para buscar.")
-                else:
-                    busqueda = ""
-                    while busqueda == "":
-                        busqueda = input("Ingresá el nombre a buscar: ").strip()
-                        if busqueda == "":
-                            print("Error: el nombre no puede estar vacío.")
+            if len(productos) == 0:
+                print("No hay productos registrados para buscar.")
+            else:
+                busqueda = ""
+                while busqueda == "":
+                    busqueda = input("Ingresá el nombre a buscar: ").strip()
+                    if busqueda == "":
+                        print("Error: el nombre no puede estar vacío.")
                  
                     encontrados = 0
                     for i in range(len(productos)):
@@ -118,7 +116,18 @@ if acceso:
                             encontrados += 1
  
                     if encontrados == 0:
-                        print(f"No se encontraron productos con el nombre '{busqueda}'.")
+                        print(f"No se encontraron productos con el nombre '{busqueda}'.")    
+ 
+        match opcion:
+            # Agregar Producto
+            case "1":
+                agregar_producto()
+            # Mostrar Producto
+            case "2":
+                mostrar_producto()
+            # Buscar Producto
+            case "3":
+               buscar_producto()
             # Eliminar Producto
             case "4":
                 print("---- ELIMINAR PRODUCTO ----")
